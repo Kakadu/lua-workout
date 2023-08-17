@@ -1,0 +1,22 @@
+(env
+ (dev
+  (flags
+   (:standard -w -9))))
+
+(executable
+ (name main)
+ (public_name -)
+ (libraries compiler-libs.bytecomp))
+
+(cram
+ (deps ./main.exe luadecompiler))
+
+(rule
+ (target luadecompiler)
+ (deps
+  (source_tree luadec))
+ (action
+  (progn
+   (run make -C luadec/lua-5.3 linux)
+   (run make -C luadec/luadec LUAVER=5.3)
+   (run cp luadec/luadec/luadec luadecompiler))))

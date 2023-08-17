@@ -1,0 +1,4 @@
+[submodule "luadec"]
+	path = luadec
+	url = https://github.com/viruscamp/luadec.git
+  recursive = true
